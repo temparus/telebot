@@ -160,13 +160,13 @@ func (pt PollType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&aux)
 }
 
-type row []Btn
+type Row []Btn
 
-func (r *ReplyMarkup) Row(many ...Btn) row {
+func (r *ReplyMarkup) Row(many ...Btn) Row {
 	return many
 }
 
-func (r *ReplyMarkup) Inline(rows ...row) {
+func (r *ReplyMarkup) Inline(rows ...Row) {
 	inlineKeys := make([][]InlineButton, 0, len(rows))
 	for i, row := range rows {
 		keys := make([]InlineButton, 0, len(row))
@@ -185,7 +185,7 @@ func (r *ReplyMarkup) Inline(rows ...row) {
 	r.InlineKeyboard = inlineKeys
 }
 
-func (r *ReplyMarkup) Reply(rows ...row) {
+func (r *ReplyMarkup) Reply(rows ...Row) {
 	replyKeys := make([][]ReplyButton, 0, len(rows))
 	for i, row := range rows {
 		keys := make([]ReplyButton, 0, len(row))
